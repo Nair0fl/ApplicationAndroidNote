@@ -8,6 +8,7 @@ import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class MemosAdapter extends RecyclerView.Adapter<MemosAdapter.MemoViewHolder>
@@ -36,7 +37,21 @@ public class MemosAdapter extends RecyclerView.Adapter<MemosAdapter.MemoViewHold
     {
         return listeMemos.size();
     }
-
+    public boolean onItemMove(int positionDebut, int positionFin)
+    {
+        Collections.swap(listeMemos, positionDebut, positionFin);
+        notifyItemMoved(positionDebut, positionFin);
+        return true;
+    }
+    // Appelé une fois à la suppression.
+    public void onItemDismiss(int position)
+    {
+        if (position > -1)
+        {
+            listeMemos.remove(position);
+            notifyItemRemoved(position);
+        }
+    }
     public class MemoViewHolder extends RecyclerView.ViewHolder
     {
         // TextView intitulé course :
@@ -46,13 +61,13 @@ public class MemosAdapter extends RecyclerView.Adapter<MemosAdapter.MemoViewHold
         {
             super(itemView);
             textViewLibelleCourse = itemView.findViewById(R.id.text_memo);
-// listener :
+
             textViewLibelleCourse.setOnClickListener(new View.OnClickListener()
             {
                 @Override
                 public void onClick(View view)
                 {
-                    System.out.println(4);
+
                     Memo course = listeMemos.get(getAdapterPosition());
                     Toast.makeText(view.getContext(), course.text,Toast.LENGTH_LONG).show();
                 }

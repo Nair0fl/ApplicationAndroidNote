@@ -1,6 +1,7 @@
 package com.example.applicatonnote;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,19 +24,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         RecyclerView recyclerView = findViewById(R.id.liste_memos);
         this.mEdit= (EditText)findViewById(R.id.newMemo);
-// à ajouter pour de meilleures performances :
         recyclerView.setHasFixedSize(true);
-// layout manager, décrivant comment les items sont disposés :
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-// contenu d'exemple :
         this.listeMemo = new ArrayList<>();
         for(int i=0;i<50;i++){
             this.listeMemo.add(new Memo("Memo "+i));
         }
-// adapter :
+
         this.memosAdapter = new MemosAdapter(listeMemo);
         recyclerView.setAdapter(this.memosAdapter);
+        ItemTouchHelper itemTouchHelper = new ItemTouchHelper(
+                new MemoTouchHelperCallback(memosAdapter));
+        itemTouchHelper.attachToRecyclerView(recyclerView);
     }
 
     public void addMemo(View view){
