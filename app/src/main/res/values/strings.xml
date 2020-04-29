@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ApplicatonNote</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <!--
+    This string is used for square devices and overridden by hello_world in
+    values-round/strings.xml for round devices.
+    -->
+    <string name="hello_world">Hello Square World!</string>
+    <string name="btn_ajouter_memo">Ok</string>
+    <string name="input_memo_placeholder">Nouveau Mémo</string>
 </resources>

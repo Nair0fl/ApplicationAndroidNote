@@ -7,29 +7,33 @@
     tools:context=".MainActivity">
 
 
-    <EditText
-        android:id="@+id/newMemo"
-        android:layout_width="325dp"
-        android:layout_height="64dp"
-        android:hint="Nouveau Mémo"
-        android:inputType="text"
-        android:maxLines="1"
-        android:paddingLeft="8dp"
-        android:textColor="#123456"
-        android:textSize="18sp"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="@id/button"
+        app:layout_constraintEnd_toStartOf="@id/button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/newMemo"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/input_memo_placeholder" />
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <Button
         android:id="@+id/button"
         android:layout_width="65dp"
         android:layout_height="64dp"
         android:background="#123456"
-        android:text="OK"
+        android:text="@string/btn_ajouter_memo"
         android:textColor="#FFFFFF"
         android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/newMemo"
+        app:layout_constraintStart_toEndOf="@+id/textInputLayout"
         app:layout_constraintTop_toTopOf="parent"
         android:onClick="addMemo"/>
 
@@ -39,7 +43,7 @@
         android:layout_height="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/newMemo" />
+        app:layout_constraintTop_toBottomOf="@+id/textInputLayout" />
 
 
 
